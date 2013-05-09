@@ -7,7 +7,7 @@
 
 window.addEventListener("DOMContentLoaded", function() {
 
-	function $(x) {
+	function go(x) {
 		var theElement = document.getElementById(x);
 		return theElement;
 	}
@@ -28,8 +28,8 @@ window.addEventListener("DOMContentLoaded", function() {
 	myText.addEventListener("blur", removeBorder);
 
 	function isRequired() {
-		if($('req').checked) {
-			requiredPill = $('req').value;
+		if(go('req').checked) {
+			requiredPill = go('req').value;
 		} else {
 			requiredPill = "No"
 		}
@@ -38,17 +38,17 @@ window.addEventListener("DOMContentLoaded", function() {
 	function toggleControls(n) {
 		switch(n) {
 			case "on":
-			$('addPillForm').style.display = "none";
-			$('displayLink').style.display = "none";
-			$('clearLink').style.display = "inline";
-			$('addNew').style.display = "inline";
+			go('addPillForm').style.display = "none";
+			go('displayLink').style.display = "none";
+			go('clearLink').style.display = "inline";
+			go('addNew').style.display = "inline";
 				break;
 			case "off":
-			$('addPillForm').style.display = "block";
-			$('displayLink').style.display = "inline";
-			$('clearLink').style.display = "inline";
-			$('addNew').style.display = "none";
-			$('items').style.display = "none";				
+			go('addPillForm').style.display = "block";
+			go('displayLink').style.display = "inline";
+			go('clearLink').style.display = "inline";
+			go('addNew').style.display = "none";
+			go('items').style.display = "none";				
 				break;
 			default:
 				return false;
@@ -70,12 +70,12 @@ window.addEventListener("DOMContentLoaded", function() {
 		
 		// build JSON object to store
 		var item			= {};
-		item.date			= ["Date:", $('date').value];
-		item.sugar			= ["Sugar Level:", $('sugarLevel').value];
-		item.pillName		= ["Pill Name:", $('pillName').value];
-		item.quantity		= ["Pill Quantity:", $('quantity').value];
+		item.date			= ["Date:", go('date').value];
+		item.sugar			= ["Sugar Level:", go('sugarLevel').value];
+		item.pillName		= ["Pill Name:", go('pillName').value];
+		item.quantity		= ["Pill Quantity:", go('quantity').value];
 		item.required		= ["Is Required:", requiredPill];
-		item.notes			= ["Notes:", $('notes').value];
+		item.notes			= ["Notes:", go('notes').value];
 	
 		// save into LocalStorage with stringify
 		localStorage.setItem(id, JSON.stringify(item));
@@ -96,7 +96,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		var makeList = document.createElement('ul');
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
-		$('items').style.display = "block";
+		go('items').style.display = "block";
 		for (var i=0, len=localStorage.length; i<len; i++) {
 			var makeLi = document.createElement('li');
 			var linksLi = document.createElement('li');
@@ -173,21 +173,21 @@ window.addEventListener("DOMContentLoaded", function() {
 		toggleControls("off");
 		
 		// populate form fields with current stored data
-		$('date').value = item.date[1];
-		$('sugarLevel').value = item.sugar[1];
-		$('pillName').value = item.pillName[1];
-		$('quantity').value = item.quantity[1];
+		go('date').value = item.date[1];
+		go('sugarLevel').value = item.sugar[1];
+		go('pillName').value = item.pillName[1];
+		go('quantity').value = item.quantity[1];
 		if(item.required[1] == "Yes") {
-			$('req').setAttribute("checked", "checked");
+			go('req').setAttribute("checked", "checked");
 		}
-		$('notes').value = item.notes[1];
+		go('notes').value = item.notes[1];
 		
 		// remove initial eventListener from save button
 		saveBtn.removeEventListener("click", storeData);
 		
 		// change submit button value to 'edit button'
-		$('submit').value = "Update Record";
-		var editSubmit = $('submit');
+		go('submit').value = "Update Record";
+		var editSubmit = go('submit');
 		editSubmit.addEventListener("click", validateFields);
 		editSubmit.key = this.key;
 	}
@@ -216,9 +216,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	
 	function validateFields(evnt) {
 		// define elements to check
-		var getDate = $('date');
-		//var getSugarLevel = $('sugarLevel');
-		var getName = $('pillName');
+		var getDate = go('date');
+		//var getSugarLevel = go('sugarLevel');
+		var getName = go('pillName');
 		
 		// reset error messages
 		errorText.innerHTML = "";
@@ -260,18 +260,18 @@ window.addEventListener("DOMContentLoaded", function() {
 
 	// set variable to default
 	var requiredPill;
-	var errorText = $('errors');
+	var errorText = go('errors');
 
 	// display stored data
-	var displayLink = $('displayLink');
+	var displayLink = go('displayLink');
 	displayLink.addEventListener("click", getData);
 
 	// clear stored data
-	var clearLink = $('clearLink');
+	var clearLink = go('clearLink');
 	clearLink.addEventListener("click", clearStorage);
 
 	// save data
-	var saveBtn = $('submit');
+	var saveBtn = go('submit');
 	saveBtn.addEventListener("click", validateFields);
 
 });
