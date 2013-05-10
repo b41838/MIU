@@ -22,14 +22,32 @@
 	</head>
 
 	<body> <!-- Starting content section of code -->
-		<div> <!-- Container div -->
-			<header> <!-- App headings -->
-				<h1>Welcome to Your Pill Keeper!</h1>
-				<h2>A simple app to keep track of the pills you take.</h2>
+		<div id="container"> <!-- Container div -->
+			<header> <!-- App logo -->
+				<!-- img here -->
 			</header>
 			
-				<a href="addItem.html"><input type="submit" value="Add your pills!" id="addLink" /></a> <!-- Takes you to addItem.html -->
-				<br />
+			<section id="searchBar">
+				<form action="404.html" id="siteSearch">
+	  				Search: <input type="search" name="search" id="searchBox" placeholder="day, date, pill, etc."><input type="submit" id="searchButton">
+				</form>
+			</section>
+			
+			<section id="cta">
+				<a href="addItem.html"><img src="img/start.png" id="start"></a>
+			</section>
+			
+			<section id="buttonContainers">
+				<ul>
+					<li><a href="404.html"><img src="img/myPills.png" ></a></li>
+					<li><a href="404.html"><img src="img/myEntries.png" ></a></li>
+					<li><a href="404.html"><img src="img/myNotes.png" ></a></li>
+					<li><a href="404.html"><img src="img/doctorsInfo.png" ></a></li>
+					<li><a href="404.html"><img src="img/medHistory.png" ></a></li>
+				</ul>
+			</section>
+			
+			<br />
 				
 			<footer> <!-- Contains copyright information -->
 				<p>

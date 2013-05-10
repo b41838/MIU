@@ -6,20 +6,74 @@
 	
 body {
 	line-height: 1;
-	background-color:#03A6A6;
-	color:#F2EDD0;
+	background-color:#fff;
+	color:#000;
 	font-family: Arial, Helvetica, sans-serif;
 	margin:0px;
 	padding:0px;
 }
 
-h1 {
-	text-align:center;
+#container {
+	width:320px;
 }
 
-h2 {
-	text-align:center;
+header {
+	height:50px;
+	width:320px;
+	background-color:#29769c;
+	background-image:url("../img/logo.png");
 }
+
+/* Index page specific */
+
+#searchBar {
+	height:35px;
+	width:320px;
+	background-color:#e6e6e6;
+	margin-bottom:5px;
+}
+
+#searchBox {
+	margin-top:7px;
+}
+
+#cta {
+	position:relative;
+	height:150px;
+	width:320px;
+	background-color:#54b7e8;
+	margin-bottom:5px;
+	background-image:url('../img/cta.png');
+}
+
+#start {
+	position:absolute;
+	top:110px;
+	left:217px;
+}
+
+#buttonContainers {
+	width:320px;
+}
+
+#buttonContainers ul {
+	display:block;
+	padding:0px;
+	margin-left:10px;
+}
+
+#buttonContainers ul li {
+	padding-bottom:4px;
+}
+
+#buttonContainers ul li a {
+	width:300px;
+	display:block;
+}
+
+/* end index specifics */
+
+/* Add Item page specific */
 
 #addLink {
 	display:block;
@@ -28,8 +82,8 @@ h2 {
 }
 
 a {
-	text-decoration:none;
-	color:#D3D930;
+	/*text-decoration:none;*/
+	color:blue;
 }
 
 a:hover {
@@ -45,14 +99,15 @@ li {
 }
 
 fieldset { 
-	border:solid 1px #D3D930;
+	margin-top:10px;
+	border:solid 1px #29769C;
 	/*margin:5px;*/
 }
 
 legend {
   padding: 0.2em 0.5em;
-  border:solid 1px #D3D930;
-  color:#D3D930;
+  border:solid 1px #29769C;
+  color:#29769C;
   font-size:90%;
   text-align:right;
 }
@@ -70,11 +125,15 @@ legend {
 	border:solid 2px #BF2C53;
 }
 
+/* end Add Item specifics */
+
 footer {
 	text-align:center;
 	font-size:10px;
-	width:100%;
-	background-color:#A65D03;
-	padding:3px;
+	line-height:25px;
+	height:25px;
+	width:320px;
+	background-color:#29769C;
+	padding:0px;
 	margin-top:8px;
 }
