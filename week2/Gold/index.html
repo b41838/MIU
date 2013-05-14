@@ -26,7 +26,7 @@
 
 		<!-- Stylesheets -->
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-		<link href="css/style.css" rel="stylesheet" type="text/css">
+<!--		<link href="css/style.css" rel="stylesheet" type="text/css"> -->
 		
 		<!-- Modernizr -->
 		<script src="js/libs/modernizr.custom.min.js"></script>
@@ -37,10 +37,74 @@
 	</head>
 
 	<body> <!-- Starting content section of code -->
-		<div id="container"> <!-- Container div -->
-			<header> <!-- App logo -->
+
+		<div data-role="page" id="home">
+
+			<div data-role="header" data-position="fixed">
+				<h1>iPill Keeper - Home</h1>
+			</div>
+			
+			<div data-role="content">
+				<p>Welcome to iPill Keeper.</p>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-id="footNav">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
+						<li><a href="#about" data-icon="info">About Us</a></li>
+						<li><a href="#news" data-icon="grid">News</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div data-role="page" id="about">
+
+			<div data-role="header" data-position="fixed">
+				<h1>iPill Keeper - About Us</h1>
+			</div>
+			
+			<div data-role="content">
+				<p>iPill Keeper is a mobile app targeted at Diabetes patients.</p>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-id="footNav">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#about" data-icon="info" class="ui-btn-active">About Us</a></li>
+						<li><a href="#news" data-icon="grid">News</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="news">
+
+			<div data-role="header" data-position="fixed">
+				<h1>iPill Keeper - News</h1>
+			</div>
+			
+			<div data-role="content">
+				<p>All of your Big Pharma news.</p>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-id="footNav">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" data-icon="home">Home</a></li>
+						<li><a href="#about" data-icon="info">About Us</a></li>
+						<li><a href="#news" data-icon="grid" class="ui-btn-active">News</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+<!--		<div id="container"> <!-- Container div -->
+<!--			<header> <!-- App logo -->
 				<!-- img here -->
-			</header>
+<!--			</header>
 			
 			<section id="searchBar">
 				<form action="404.html" id="siteSearch">
@@ -65,12 +129,13 @@
 			<br />
 				
 			<footer> <!-- Contains copyright information -->
-				<p>
+<!--				<p>
 					&copy; Copyright 2013 - Kyler Schroeder
 				</p>
 			</footer>
-		</div>
-		
+<!--		</div>
+
+-->
 		<!-- JavaScript files -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
