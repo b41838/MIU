@@ -1,4 +1,8 @@
 header {
+	background-color:#29769C;
+}
+
+#index {
 	height:200px;
 	background-image:url("../img/cta.png");
 	background-color:#29769c;

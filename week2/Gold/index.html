@@ -42,7 +42,7 @@
 		<div data-role="page" id="home">
 
 			<div data-role="header">
-				<header> <!-- App logo -->
+				<header id="index"> <!-- App logo -->
 					<a href="index.html"><img src="img/logo.png"></a>
 					<a href="addItem.html" id="start" data-role="button" data-mini="true" data-theme="b" data-icon="arrow-r" data-iconpos="left"><h5>Start Tracking!</h5></a>
 				</header>
@@ -80,7 +80,27 @@
 			</div>
 			
 			<div data-role="content">
-				<p>iPill Keeper is a mobile app targeted at Diabetes patients.</p>
+				<section data-role="collapsible-set" data-inset="true">
+					<article data-role="collapsible">
+						<h3>What is iPill Keeper?</h3>
+							<p>iPill Keeper is an app designed (but not limited) to keep track of the pills a diabetic takes.  iPill Keeper will track any pills and other basic data that you provide for safe keeping.</p>
+					</article>
+					<article data-role="collapsible">
+						<h3>Check us out on GitHub!</h3>
+							<p>iPill Keeper is an open project hosted at <a href="https://github.com/b41838/MIU">GitHub</a>.</p>
+					</article>
+					<article data-role="collapsible"><h3>Our other projects</h3>
+							<p>We have two apps to view,
+								<ul>
+									<li><a href="#">iPill Keeper Bronze</a></li>
+									<li><a href="#">iPill Keeper Gold</a></li>
+								</ul>
+							</p>
+					</article>
+					<article data-role="collapsible"><h3>About the developer</h3>
+							<p>iPill Keeper is being developed by Kyler Schroeder, a Mobile Development student at Full Sail University.</p>
+					</article>
+				</section>
 			</div>
 			
 			<div data-role="footer" data-position="fixed" data-id="footNav">
@@ -103,7 +123,24 @@
 			</div>
 			
 			<div data-role="content">
-				<p>All of your Big Pharma news.</p>
+				<h2>Recent Medical News</h2>
+				<section class="ui-grid-a">
+					<article class="ui-block-a"><strong>5-15-2013</strong> <br /> <a href="#error">Apple Cider Vinigar</a> <br /> <br />  </article>
+					<article class="ui-block-b"><strong>5-15-2013</strong> <br /> <a href="#error">Avocado & Tomatoes!</a> <br /> <br />  </article>
+					<article class="ui-block-b"><strong>5-14-2013</strong> <br /> <a href="#error">Green Tea</a> <br /> <br />  </article>
+					<article class="ui-block-b"><strong>5-14-2013</strong> <br /> <a href="#error">Alergy Season</a> <br /> <br />  </article>
+					<article class="ui-block-b"><strong>5-13-2013</strong> <br /> <a href="#error">Antidepresants</a> <br /> <br />  </article>
+					<article class="ui-block-b"><strong>5-13-2013</strong> <br /> <a href="#error">Tobacco Kills</a> <br /> <br />  </article>
+				</section>
+				
+				<!--<ul class="ui-grid-a" data-role="listview" data-inset="true">
+					<li class="ui-block-a"><strong>5-15-2013</strong> <br /> <a href="#error">Apple Cider Vinigar</a> <br /> <br />  </article>
+					<li class="ui-block-b"><strong>5-15-2013</strong> <br /> <a href="#error">Avocado & Tomatoes!</a> <br /> <br />  </article>
+					<li class="ui-block-b"><strong>5-14-2013</strong> <br /> <a href="#error">Green Tea</a> <br /> <br />  </article>
+					<li class="ui-block-b"><strong>5-14-2013</strong> <br /> <a href="#error">Alergy Season</a> <br /> <br />  </article>
+					<li class="ui-block-b"><strong>5-13-2013</strong> <br /> <a href="#error">Antidepresants</a> <br /> <br />  </article>
+					<li class="ui-block-b"><strong>5-13-2013</strong> <br /> <a href="#error">Tobacco Kills</a> <br /> <br />  </article>
+				</ul>-->
 			</div>
 			
 			<div data-role="footer" data-position="fixed" data-id="footNav">
