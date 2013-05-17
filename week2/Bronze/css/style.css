@@ -19,9 +19,7 @@ body {
 
 header {
 	height:50px;
-	width:320px;
 	background-color:#29769c;
-	background-image:url("../img/logo.png");
 }
 
 /* Index page specific */
@@ -133,7 +131,6 @@ footer {
 	font-size:10px;
 	line-height:25px;
 	height:25px;
-	width:320px;
 	background-color:#29769C;
 	padding:0px;
 	margin-top:8px;
