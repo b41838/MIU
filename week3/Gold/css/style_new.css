@@ -39,3 +39,12 @@ h3 {
 .textCenter {
 	text-align:center;
 }
+
+label.error {
+	display:block;
+	color:red;
+}
+
+#errorsLink {
+	display:none;
+}
