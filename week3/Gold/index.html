@@ -200,7 +200,7 @@
 				
 				<div data-role="fieldcontain">
 					<label for="sugarLevel">Blood Sugar Level:</label>
-					<select name="sugarLevel" id="sugarLevel" data-native-menu="false" class="required">
+					<select name="sugarLevel" id="sugarLevel" class="required">
 						<option data-place-holder="true">Select your Blood Sugar Level</option>
 						<optgroup label="Just a little off">
 							<option value="littleLow">Little Low</option>
@@ -239,7 +239,7 @@
 							
 				<div data-role="fieldcontain">
 					<label for="notes">Notes:</label>
-					<textarea></textarea>
+					<textarea name="notes" id="notes"></textarea>
 				</div>
 				
 				<div data-role="fieldcontain">
@@ -250,6 +250,12 @@
 				
 				<a href="#errorPop" id="errorsLink" data-rel="dialog">Error diag.</a>
 			</form>
+			
+			<section id="links">
+				<nav>
+					<a href="#" id="clearLink">Clear Stored Data</a> | <a href="#" id="displayLink">Display Data</a>  <a href="" onclick="window.location.reload(true)" id="addNew" style="display:none;">Add New Item</a>
+				</nav>
+			</section>
 		</div>
 		
 		<div data-role="dialog" id="errorPop">
@@ -263,7 +269,6 @@
 			<div data-role="content">
 				<section class="ui-grid-a">
 					<ul>
-						<li>Test.</li>
 					</ul>
 				</section>
 			</div>
