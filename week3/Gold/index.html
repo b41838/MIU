@@ -190,7 +190,7 @@
 			</nav>
 		</div>
 
-		<div data-role="page" id="addItem">
+		<div data-role="page" id="addItem" style="background:transparent;">
 			<h2>Add Items</h2>
 			<form action="" method="post" id="addPills">
 				<div data-role="fieldcontain">
@@ -230,10 +230,8 @@
 				<div data-role="fieldcontain">
 					<fieldset data-role="controlgroup">
 						<legend>Required?</legend>
-							<input type="radio" value="Yes" name="requiredGrp" id="yReq" class="required">
-							<label for="yReq">Yes</label>
-							<input type="radio" value="No" name="requiredGrp" id="nReq">
-							<label for="nReq">No</label>
+							<input type="checkbox" value="Yes" name="requiredGrp" id="req">
+							<label for="req">Yes</label>
 					</fieldset>
 				</div>
 							

@@ -15,6 +15,7 @@ $('#addItem').on('pageinit', function() {
 					for(var key in validator.submitted) {
 						var label = $('label[for^="'+ key +'"]').not('.error');;
 						//console.log(label.text());
+						//var legend = $('legend').text();
 						var legend = label.closest('fieldset').find('.ui-controlgroup-label');
 						var fieldName = legend.length ? legend.text() : label.text();
 						html += '<li>'+ fieldName +'</li>';
@@ -123,7 +124,7 @@ $('#addItem').on('pageinit', function() {
 		go('date').value = item.date[1];
 		go('sugarLevel').value = item.sugar[1];
 		go('pillName').value = item.pillName[1];
-		//go('quantity').value = item.quantity[1];
+		go('pillQuantity').value = item.pillQuantity[1];
 		/*if(item.required[1] == "Yes") {
 			go('req').setAttribute("checked", "checked");
 		}*/
@@ -135,8 +136,17 @@ $('#addItem').on('pageinit', function() {
 		// change submit button value to 'edit button'
 		go('submit').value = "Update Record";
 		var editSubmit = go('submit');
-		editSubmit.addEventListener("click", validateFields);
+		editSubmit.addEventListener("click", storeData);
 		editSubmit.key = this.key;
+	}
+	
+	// check to see if checkbox is selected
+	function isRequired() {
+		if(go('req').checked) {
+			requiredPill = go('req').value;
+		} else {
+			requiredPill = "No"
+		}
 	}
 	
 var autofillData = function () {
@@ -196,7 +206,7 @@ var storeData = function(data, key) {
 		
 	
 		// run function to find if req checkbox is checked or not
-		//isRequired();
+		isRequired();
 		
 		// build JSON object to store
 		var item			= {};
@@ -204,7 +214,7 @@ var storeData = function(data, key) {
 		item.sugar			= ["Sugar Level:", go('sugarLevel').value];
 		item.pillName		= ["Pill Name:", go('pillName').value];
 		item.pillQuantity	= ["Pill Quantity:", go('pillQuantity').value];
-		//item.required		= ["Is Required:", requiredPill];
+		item.required		= ["Is Required:", requiredPill];
 		item.notes			= ["Notes:", go('notes').value];
 	
 		// save into LocalStorage with stringify
