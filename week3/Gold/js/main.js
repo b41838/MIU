@@ -41,8 +41,8 @@ $('#addItem').on('pageinit', function() {
 	clearLink.addEventListener("click", clearLocal);
 	
 	// save data
-	//var saveBtn = go('submit');
-	//saveBtn.addEventListener("click", storeData);
+	var saveBtn = go('submit');
+	saveBtn.addEventListener("click", storeData);
 
 });
 
