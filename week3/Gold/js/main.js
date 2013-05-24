@@ -1,12 +1,12 @@
 $('#home').on('pageinit', function() {
 	//code needed for home page goes here
 });	
-		
+
 $('#addItem').on('pageinit', function() {
 
 		var myForm = $('#addPills'),
 			errorsLink = $('#errorsLink');
-			
+
 		    myForm.validate( {
 				invalidHandler: function(form, validator) {
 					errorsLink.click();
@@ -15,21 +15,20 @@ $('#addItem').on('pageinit', function() {
 					for(var key in validator.submitted) {
 						var label = $('label[for^="'+ key +'"]').not('.error');;
 						//console.log(label.text());
-						//var legend = $('legend').text();
 						var legend = label.closest('fieldset').find('.ui-controlgroup-label');
 						var fieldName = legend.length ? legend.text() : label.text();
 						html += '<li>'+ fieldName +'</li>';
 						console.log(fieldName);
 					};
 					$("#errorPop ul").html(html);
-					
+
 				},
 				submitHandler: function() {
 					var data = myForm.serializeArray();
 					storeData(data);
 		}
 	});
-	
+
 	//any other code needed for addItem page goes here
 
 	// display stored data
@@ -39,10 +38,10 @@ $('#addItem').on('pageinit', function() {
 	// clear stored data
 	var clearLink = go('clearLink');
 	clearLink.addEventListener("click", clearLocal);
-	
+
 	// save data
-	var saveBtn = go('submit');
-	saveBtn.addEventListener("click", storeData);
+	//var saveBtn = go('submit');
+	//saveBtn.addEventListener("click", storeData);
 
 });
 
@@ -52,7 +51,7 @@ $('#addItem').on('pageinit', function() {
 		var theElement = document.getElementById(x);
 		return theElement;
 	}
-	
+
 	function toggleControls(n) {
 		switch(n) {
 			case "on":
@@ -72,7 +71,7 @@ $('#addItem').on('pageinit', function() {
 				return false;
 		}
 	}
-	
+
 	// get image for category from img folder
 	function grabImage(catName, makeSubList) {
 		var imgLi = document.createElement('li');
@@ -93,7 +92,7 @@ $('#addItem').on('pageinit', function() {
 		editLink.addEventListener("click", editEntry);
 		editLink.innerHTML = editText;
 		linksLi.appendChild(editLink);
-		
+
 		// add delete single item links
 		var deleteLink = document.createElement('a');
 		deleteLink.href = "#";
@@ -103,7 +102,7 @@ $('#addItem').on('pageinit', function() {
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
 	}
-	
+
 	function enterDummyData() {
 		// store json data into localStorage
 		for(var n in json) {
@@ -116,41 +115,32 @@ $('#addItem').on('pageinit', function() {
 		// grab data from localStorage
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
-		
+
 		// show form
 		toggleControls("off");
-		
+
 		// populate form fields with current stored data
 		go('date').value = item.date[1];
 		go('sugarLevel').value = item.sugar[1];
 		go('pillName').value = item.pillName[1];
-		go('pillQuantity').value = item.pillQuantity[1];
+		//go('quantity').value = item.quantity[1];
 		/*if(item.required[1] == "Yes") {
 			go('req').setAttribute("checked", "checked");
 		}*/
 		go('notes').value = item.notes[1];
-		
+
 		// remove initial eventListener from save button
 		saveBtn.removeEventListener("click", storeData);
-		
+
 		// change submit button value to 'edit button'
 		go('submit').value = "Update Record";
 		var editSubmit = go('submit');
-		editSubmit.addEventListener("click", storeData);
+		editSubmit.addEventListener("click", validateFields);
 		editSubmit.key = this.key;
 	}
-	
-	// check to see if checkbox is selected
-	function isRequired() {
-		if(go('req').checked) {
-			requiredPill = go('req').value;
-		} else {
-			requiredPill = "No"
-		}
-	}
-	
+
 var autofillData = function () {
-	 
+
 };
 
 var getData = function() {
@@ -159,7 +149,7 @@ var getData = function() {
 			alert("There is no data to clear, entering dummyData.");
 			enterDummyData();
 		}
-		
+
 		// write data from localStorage to browser
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "items");
@@ -197,26 +187,26 @@ var storeData = function(data, key) {
 		if(!key) {
 			// get a random number for localStorage key
 			var id			= Math.floor(Math.random()*1000001);
-			
+
 		} else {
 			// if it has a key already, set it to the existing key to overwrite
 			id = key;
 		}console.log(key);
-		
-		
-	
+
+
+
 		// run function to find if req checkbox is checked or not
-		isRequired();
-		
+		//isRequired();
+
 		// build JSON object to store
 		var item			= {};
 		item.date			= ["Date:", go('date').value];
 		item.sugar			= ["Sugar Level:", go('sugarLevel').value];
 		item.pillName		= ["Pill Name:", go('pillName').value];
 		item.pillQuantity	= ["Pill Quantity:", go('pillQuantity').value];
-		item.required		= ["Is Required:", requiredPill];
+		//item.required		= ["Is Required:", requiredPill];
 		item.notes			= ["Notes:", go('notes').value];
-	
+
 		// save into LocalStorage with stringify
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Save Successfull!");
@@ -234,7 +224,7 @@ var	deleteItem = function () {
 			alert("Contact was not deleted.")
 		}
 };
-					
+
 var clearLocal = function() {
 		if(localStorage.length === 0) {
 			alert("There is no data to clear.");
