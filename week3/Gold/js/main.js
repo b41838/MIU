@@ -39,10 +39,6 @@ $('#addItem').on('pageinit', function() {
 	var clearLink = go('clearLink');
 	clearLink.addEventListener("click", clearLocal);
 
-	// save data
-	//var saveBtn = go('submit');
-	//saveBtn.addEventListener("click", storeData);
-
 });
 
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
@@ -130,12 +126,12 @@ $('#addItem').on('pageinit', function() {
 		go('notes').value = item.notes[1];
 
 		// remove initial eventListener from save button
-		saveBtn.removeEventListener("click", storeData);
+		//saveBtn.removeEventListener("click", storeData);
 
 		// change submit button value to 'edit button'
-		go('submit').value = "Update Record";
+		//go('submit').value = "Update Record";
 		var editSubmit = go('submit');
-		editSubmit.addEventListener("click", validateFields);
+		editSubmit.addEventListener("click");
 		editSubmit.key = this.key;
 	}
 
@@ -235,3 +231,8 @@ var clearLocal = function() {
 			return false;
 		}
 };
+
+/* save data
+	var saveBtn = go('submit');
+	saveBtn.addEventListener("click", storeData);
+*/
