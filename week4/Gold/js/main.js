@@ -149,7 +149,7 @@ var getData = function() {
 		// write data from localStorage to browser
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "items");
-		makeDiv.setAttribute("page", "dialog")
+		makeDiv.setAttribute("data-role", "page")
 		var makeList = document.createElement('ul');
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
