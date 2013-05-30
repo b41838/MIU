@@ -2,6 +2,14 @@ header {
 	background-color:#29769C;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:#2b81a5;
+}
+
+a {
+	color:#fcee21
+}
+
 #index {
 	height:200px;
 	background-image:url("../img/cta.png");
@@ -56,6 +64,10 @@ ol, ul {
 
 li {
 	padding-top:5px;
+}
+
+#resetButton {
+	text-align:center;
 }
 
 #bottomLinks {

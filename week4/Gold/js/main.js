@@ -1,48 +1,63 @@
-$('#home').on('pageinit', function(){
+$('#home').on('pageinit', function() {
 	//code needed for home page goes here
 });	
-		
-$('#addItem').on('pageinit', function(){
 
-		var myForm = $('#formId');
-		    myForm.validate({
-			invalidHandler: function(form, validator) {
-			},
-			submitHandler: function() {
-		var data = myForm.serializeArray();
-			storeData(data);
+$('#addItem').on('pageinit', function() {
+
+		var myForm = $('#addPills'),
+			errorsLink = $('#errorsLink');
+
+		    myForm.validate( {
+				invalidHandler: function(form, validator) {
+					errorsLink.click();
+					var html = '';
+					//console.log(validator.submitted);
+					for(var key in validator.submitted) {
+						var label = $('label[for^="'+ key +'"]').not('.error');;
+						//console.log(label.text());
+						var legend = label.closest('fieldset').find('.ui-controlgroup-label');
+						var fieldName = legend.length ? legend.text() : label.text();
+						html += '<li>'+ fieldName +'</li>';
+						console.log(fieldName);
+					};
+					$("#errorPop ul").html(html);
+
+				},
+				submitHandler: function() {
+					var data = myForm.serializeArray();
+					storeData(data);
 		}
 	});
-	
+
 	//any other code needed for addItem page goes here
-	
+
+	// display stored data
+	var displayLink = go('displayLink');
+	displayLink.addEventListener("click", getData);
+
+	// clear stored data
+	var clearLink = go('clearLink');
+	clearLink.addEventListener("click", clearLocal);
+
 });
 
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
 
-	var go = function(x) {
+	var go = function go(x) {
 		var theElement = document.getElementById(x);
 		return theElement;
 	}
 
-	function isRequired() {
-		if(go('req').checked) {
-			requiredPill = go('req').value;
-		} else {
-			requiredPill = "No"
-		}
-	}
-	
 	function toggleControls(n) {
 		switch(n) {
 			case "on":
-			go('addPillForm').style.display = "none";
+			go('addPills').style.display = "none";
 			go('displayLink').style.display = "none";
 			go('clearLink').style.display = "inline";
 			go('addNew').style.display = "inline";
 				break;
 			case "off":
-			go('addPillForm').style.display = "block";
+			go('addPills').style.display = "block";
 			go('displayLink').style.display = "inline";
 			go('clearLink').style.display = "inline";
 			go('addNew').style.display = "none";
@@ -73,11 +88,7 @@ $('#addItem').on('pageinit', function(){
 		editLink.addEventListener("click", editEntry);
 		editLink.innerHTML = editText;
 		linksLi.appendChild(editLink);
-		
-		// add line break
-		//var breakTag = document.createElement('br');
-		//linksLi.appendChild(breakTag);
-		
+
 		// add delete single item links
 		var deleteLink = document.createElement('a');
 		deleteLink.href = "#";
@@ -88,50 +99,53 @@ $('#addItem').on('pageinit', function(){
 		linksLi.appendChild(deleteLink);
 	}
 
+	function enterDummyData() {
+		// store json data into localStorage
+		for(var n in json) {
+			var id = Math.floor(Math.random()*1000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		}
+	}
+
 	function editEntry() {
 		// grab data from localStorage
 		var value = localStorage.getItem(this.key);
 		var item = JSON.parse(value);
-		
+
 		// show form
 		toggleControls("off");
-		
+
 		// populate form fields with current stored data
 		go('date').value = item.date[1];
 		go('sugarLevel').value = item.sugar[1];
 		go('pillName').value = item.pillName[1];
-		go('quantity').value = item.quantity[1];
-		if(item.required[1] == "Yes") {
+		//go('quantity').value = item.quantity[1];
+		/*if(item.required[1] == "Yes") {
 			go('req').setAttribute("checked", "checked");
-		}
+		}*/
 		go('notes').value = item.notes[1];
-		
+
 		// remove initial eventListener from save button
-		saveBtn.removeEventListener("click", storeData);
-		
+		//saveBtn.removeEventListener("click", storeData);
+
 		// change submit button value to 'edit button'
-		go('submit').value = "Update Record";
+		//go('submit').value = "Update Record";
 		var editSubmit = go('submit');
-		editSubmit.addEventListener("click", storeData);
+		editSubmit.addEventListener("click");
 		editSubmit.key = this.key;
 	}
-	
-// populate localStorage with dummyData from json file
-var autofillData = function (){
-	// store json data into localStorage
-	for(var n in json) {
-		var id = Math.floor(Math.random()*1000001);
-		localStorage.setItem(id, JSON.stringify(json[n]));
-	}
+
+var autofillData = function () {
+
 };
 
-var getData = function(){
+var getData = function() {
 		toggleControls("on");
 		if(localStorage.length === 0) {
 			alert("There is no data to clear, entering dummyData.");
-			autofillData();
+			enterDummyData();
 		}
-		
+
 		// write data from localStorage to browser
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "items");
@@ -162,35 +176,41 @@ var getData = function(){
 		}
 };
 
-var storeData = function(key){
+var storeData = function(data, key) {
+	console.log(data);
+//	function storeData(key) {
 		// if no key, create new key
 		if(!key) {
 			// get a random number for localStorage key
 			var id			= Math.floor(Math.random()*1000001);
+
 		} else {
 			// if it has a key already, set it to the existing key to overwrite
 			id = key;
-		}
-	
+		}console.log(key);
+
+
+
 		// run function to find if req checkbox is checked or not
-		isRequired();
-		
+		//isRequired();
+
 		// build JSON object to store
 		var item			= {};
 		item.date			= ["Date:", go('date').value];
 		item.sugar			= ["Sugar Level:", go('sugarLevel').value];
 		item.pillName		= ["Pill Name:", go('pillName').value];
-		item.quantity		= ["Pill Quantity:", go('quantity').value];
-		item.required		= ["Is Required:", requiredPill];
+		item.pillQuantity	= ["Pill Quantity:", go('pillQuantity').value];
+		//item.required		= ["Is Required:", requiredPill];
 		item.notes			= ["Notes:", go('notes').value];
-	
+
 		// save into LocalStorage with stringify
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Save Successfull!");
 		window.location.reload();
-}; 
+	}
+//}; 
 
-var	deleteItem = function (){
+var	deleteItem = function () {
 		var ask = confirm("Are you sure you want to delete this entry?");
 		if(ask) {
 			localStorage.removeItem(this.key);
@@ -200,8 +220,8 @@ var	deleteItem = function (){
 			alert("Contact was not deleted.")
 		}
 };
-					
-var clearLocal = function(){
+
+var clearLocal = function() {
 		if(localStorage.length === 0) {
 			alert("There is no data to clear.");
 		} else {
@@ -212,18 +232,7 @@ var clearLocal = function(){
 		}
 };
 
-	// set variable to default
-	var requiredPill;
-	var errorText = go('errors');
-
-	// display stored data
-	var displayLink = go('displayLink');
-	displayLink.addEventListener("click", getData);
-
-	// clear stored data
-	var clearLink = go('clearLink');
-	clearLink.addEventListener("click", clearLocal);
-
-	// save data
+/* save data
 	var saveBtn = go('submit');
 	saveBtn.addEventListener("click", storeData);
+*/
