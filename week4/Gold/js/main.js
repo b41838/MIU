@@ -98,7 +98,7 @@ $('#addItem').on('pageinit', function() {
 		deleteLink.innerHTML = deleteText;
 		linksLi.appendChild(deleteLink);
 	}
-
+	
 	function enterDummyData() {
 		// store json data into localStorage
 		for(var n in json) {
@@ -148,12 +148,13 @@ var getData = function() {
 
 		// write data from localStorage to browser
 		var makeDiv = document.createElement('div');
-		makeDiv.setAttribute("id", "items");
-		makeDiv.setAttribute("data-role", "page")
+		makeDiv.setAttribute("id", "showLS");
+		makeDiv.setAttribute("data-role", "page");
+		makeDiv.setAttribute("data-theme", "a");
 		var makeList = document.createElement('ul');
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
-		go('items').style.display = "block";
+		go('showLS').style.display = "block";
 		for (var i=0, len=localStorage.length; i<len; i++) {
 			var makeLi = document.createElement('li');
 			var linksLi = document.createElement('li');
